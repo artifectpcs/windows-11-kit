@@ -1,0 +1,21 @@
+# Apps to remove if Windows puts them back. One pattern per line; delete a line to keep that app.
+# Generic build: Xbox/Game Pass, Game Bar, Camera and Paint are intentionally NOT listed.
+*DevHome*
+*CrossDevice*
+*YourPhone*
+*Clipchamp*
+*Bing*
+*Solitaire*
+*Todos*
+*OutlookForWindows*
+*Teams*
+*Copilot*
+*WebExperience*
+*WindowsAlarms*
+*FeedbackHub*
+*OfficeHub*
+*PowerAutomate*
+*QuickAssist*
+*StickyNotes*
+*SoundRecorder*
+*GetHelp*

@@ -1,0 +1,3 @@
+scripts/** -text
+files/** -text
+SHA256SUMS.txt -text
