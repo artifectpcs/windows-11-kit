@@ -110,8 +110,13 @@ Get-ChildItem C:\windowsbuild-kit -Recurse -File | ? Name -ne 'SHA256SUMS.txt' |
 scripts/   numbered steps (00-12), run in order
 files/     what gets copied INTO your image: answer-file template, first-logon
            script, optional clean-up + its list, taskbar layout
+docs/      the full written walkthrough (PDF and Word), with screenshots
 ```
 
+Prefer reading to watching? The **[full walkthrough PDF](docs/Build-Your-Own-Windows-11-The-ARTifect-Walkthrough.pdf)** explains every step in detail, with screenshots and a troubleshooting FAQ.
+
 ---
+
+Released under the [MIT License](LICENSE).
 
 *Not affiliated with or endorsed by Microsoft. Windows is a trademark of Microsoft Corporation. You use these scripts at your own risk. Read them first, and test on spare hardware.*

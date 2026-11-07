@@ -1,3 +1,4 @@
 scripts/** -text
 files/** -text
+docs/** binary
 SHA256SUMS.txt -text

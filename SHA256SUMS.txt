@@ -1,3 +1,5 @@
+901613ba80046b2edf751ba9103b557d02d2e2f9c0023aeea5fc2ae23b122e8c  docs/Build-Your-Own-Windows-11-The-ARTifect-Walkthrough.docx
+613b291dd616ead1e823204ea09259cb1dba38598dc8a86030a29ddad13aec92  docs/Build-Your-Own-Windows-11-The-ARTifect-Walkthrough.pdf
 580d32bc09598034b124eb1006fd1fd8c7b408c6a4cf9f9f01726daac793e408  files/FirstLogon.ps1
 0c46bf5089f3620a2c0ef2c650cad84ff76a4a9c9d86ec1144396259e15f242a  files/LayoutModification.xml
 50836d319d0534389743533e2066eaeb4cd764d389e80dc3407a98d02433e025  files/Remove-ReturningApps.ps1
