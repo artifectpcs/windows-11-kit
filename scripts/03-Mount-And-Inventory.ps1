@@ -14,8 +14,9 @@
 
 dism /Mount-Image /ImageFile:$Build\install.wim /Index:1 /MountDir:$Mount
 
-Set-Location $Build
+Push-Location $Build
 Get-AppxProvisionedPackage -Path $Mount | Select DisplayName, PackageName | Export-Csv apps.csv -NoTypeInformation
 Get-WindowsOptionalFeature -Path $Mount | Select FeatureName, State | Export-Csv features.csv -NoTypeInformation
 Get-WindowsCapability -Path $Mount | ? State -eq Installed | Select Name | Export-Csv capabilities.csv -NoTypeInformation
 "Apps provisioned: " + (Import-Csv apps.csv).Count
+Pop-Location

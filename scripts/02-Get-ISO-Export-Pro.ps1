@@ -19,7 +19,8 @@ $isoFile = (Get-ChildItem "$env:USERPROFILE\Downloads\*.iso" | Sort LastWriteTim
 if (-not $isoFile) { throw "No .iso found in Downloads. Download it from microsoft.com first." }
 Write-Host "Using: $isoFile"
 Write-Host "SHA256: $((Get-FileHash $isoFile -Algorithm SHA256).Hash)" -ForegroundColor Cyan
-Write-Host "Compare that with the hash on Microsoft's download page before continuing." -ForegroundColor Cyan
+Write-Host "Compare that with the hash on Microsoft's download page." -ForegroundColor Cyan
+Read-Host "Press Enter if it matches (Ctrl+C to stop if it doesn't)" | Out-Null
 
 $drive = (Mount-DiskImage -ImagePath $isoFile -PassThru | Get-Volume).DriveLetter
 robocopy "${drive}:\" $Iso /E

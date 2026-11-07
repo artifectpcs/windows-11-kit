@@ -50,7 +50,7 @@ First, edit **`scripts/00-Settings.ps1`** with your name, model, support link, w
 | 02 | `.\02-Get-ISO-Export-Pro.ps1` | Download the ISO from [microsoft.com](https://www.microsoft.com/software-download/windows11) first. Shows the SHA-256 to compare, copies the files, exports **only Windows 11 Pro** |
 | 03 | `.\03-Mount-And-Inventory.ps1` | Mounts the image and saves `apps.csv`, `features.csv`, `capabilities.csv` (your "before" picture) |
 | 04 | `.\04-Add-Update.ps1 -KB <number>` | Integrates this month's cumulative update. Look up the KB on Windows release health and download the `.msu` from the Microsoft Update Catalog. **The KB changes every month.** |
-| 05 | `.\05-Remove-Apps.ps1` | Removes the listed apps by exact name. Keeps Store, Security, Xbox/Game Pass, Game Bar, Camera, Paint. Edit the list to suit you. |
+| 05 | `.\05-Remove-Apps.ps1` | Pick **Minimal**, **Recommended** (default) or **Aggressive**. It lists exactly what will go and asks first. Store, Security, Xbox/Game Pass and winget are always kept. |
 | 06 | `.\06-Features.ps1` | .NET 3.5 on, Work Folders and legacy Media Player off. Dev/AI PCs: uncomment Hyper-V/WSL lines. |
 | 07–09 | `.\07-Registry.ps1` | Privacy, targeted services, Start menu clean-up, Edge extras. VBS stays on. |
 | 10 | `.\08-Answer-File.ps1` | Writes `autounattend.xml` to your installer (see [The setup account](#the-setup-account)) |

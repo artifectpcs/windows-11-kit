@@ -10,7 +10,7 @@
 # =====================================================================
 . "$PSScriptRoot\00-Settings.ps1"
 
-Set-Location $Root
+Push-Location $Root
 dism /Unmount-Image /MountDir:$Mount /Commit
 
 Remove-Item "$Iso\sources\install.wim" -ErrorAction SilentlyContinue
@@ -18,3 +18,4 @@ dism /Export-Image /SourceImageFile:$Build\install.wim /SourceIndex:1 /Destinati
 
 $adk = "${env:ProgramFiles(x86)}\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg"
 & "$adk\oscdimg.exe" -m -o -u2 -udfver102 "-bootdata:2#p0,e,b$adk\etfsboot.com#pEF,e,b$adk\efisys.bin" $Iso "$Root\My-Windows11.iso"
+Pop-Location

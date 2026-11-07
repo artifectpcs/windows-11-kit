@@ -14,7 +14,7 @@
 mkdir $Iso, $Build, $Mount, "$Build\updates" -Force | Out-Null
 Write-Host "Folders ready under $Root" -ForegroundColor Green
 
-winget install --id Microsoft.WindowsADK -e --override "/quiet /norestart /features OptionId.DeploymentTools"
+winget install --id Microsoft.WindowsADK -e --source winget --accept-source-agreements --accept-package-agreements --override "/quiet /norestart /features OptionId.DeploymentTools"
 
 $oscdimg = "${env:ProgramFiles(x86)}\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\oscdimg.exe"
 if (Test-Path $oscdimg) { Write-Host "oscdimg found: ready for step 10" -ForegroundColor Green }
