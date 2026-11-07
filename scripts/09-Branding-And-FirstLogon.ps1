@@ -19,11 +19,18 @@
 $scripts = "$Mount\Windows\Setup\Scripts"
 $shell   = "$Mount\Users\Default\AppData\Local\Microsoft\Windows\Shell"
 mkdir $scripts, "$Mount\Windows\Web\Wallpaper\Custom", $shell -Force | Out-Null
-if (Test-Path $Wall) { Copy-Item $Wall "$Mount\Windows\Web\Wallpaper\Custom\wallpaper.jpg" }
+if (Test-Path $Wall) { Copy-Item $Wall ("$Mount\Windows\Web\Wallpaper\Custom\wallpaper" + [IO.Path]::GetExtension($Wall).ToLower()) }
 else { Write-Host "No wallpaper at $Wall, skipping." -ForegroundColor Yellow }
 
 Copy-Item "$Kit\files\FirstLogon.ps1", "$Kit\files\Remove-ReturningApps.ps1", "$Kit\files\Sweep-List.txt" $scripts
 Copy-Item "$Kit\files\LayoutModification.xml" $shell
+
+# Match the optional clean-up list to the removal level you chose in step 05
+$lvl = Get-Content "$Build\removal-level.txt" -ErrorAction SilentlyContinue
+if ($lvl -eq 'Aggressive') {
+  '*XboxGamingOverlay*','*WindowsCamera*','*Paint*','*ZuneMusic*','*ZuneVideo*' | Add-Content "$scripts\Sweep-List.txt"
+  Write-Host 'Clean-up list extended to match the Aggressive level.' -ForegroundColor DarkYellow
+}
 
 reg load HKLM\OFFSW "$Mount\Windows\System32\config\SOFTWARE"
 $oem = 'HKLM\OFFSW\Microsoft\Windows\CurrentVersion\OEMInformation'

@@ -28,7 +28,7 @@ This is the companion kit for the ARTifect PCs video series ([@artifectpcs](http
 
 **Option A, copy and paste:** open each script below on GitHub, click the copy button, and paste it into Terminal (Admin).
 
-**Option B, download:** click **Code → Download ZIP**, then unzip to `C:\windowsbuild-kit`. Windows marks downloaded scripts as "from the internet". After you've read them, unblock them once:
+**Option B, download:** click **Code → Download ZIP**. The ZIP contains one folder, `windows-11-kit-main`: move **everything inside it** to `C:\windowsbuild-kit`, so you end up with `C:\windowsbuild-kit\scripts` and `C:\windowsbuild-kit\files` side by side. Windows marks downloaded scripts as "from the internet". After you've read them, unblock them once:
 
 ```powershell
 Get-ChildItem C:\windowsbuild-kit -Recurse | Unblock-File
@@ -49,7 +49,7 @@ First, edit **`scripts/00-Settings.ps1`** with your name, model, support link, w
 | 01 | `.\01-Setup-Workspace.ps1` | Makes `C:\windowsbuild\{iso,build,mount,build\updates}`, installs ADK Deployment Tools |
 | 02 | `.\02-Get-ISO-Export-Pro.ps1` | Download the ISO from [microsoft.com](https://www.microsoft.com/software-download/windows11) first. Shows the SHA-256 to compare, copies the files, exports **only Windows 11 Pro** |
 | 03 | `.\03-Mount-And-Inventory.ps1` | Mounts the image and saves `apps.csv`, `features.csv`, `capabilities.csv` (your "before" picture) |
-| 04 | `.\04-Add-Update.ps1 -KB <number>` | Integrates this month's cumulative update. Look up the KB on Windows release health and download the `.msu` from the Microsoft Update Catalog. **The KB changes every month.** |
+| 04 | `.\04-Add-Update.ps1 -KB <number>` | Integrates this month's update. In the [Microsoft Update Catalog](https://catalog.update.microsoft.com), search your version (e.g. `26H2`) and pick the **newest "Cumulative Update for Windows 11" for x64** that is **not** marked *Preview*. Skip the Dynamic Update, Safe OS and .NET rows. **The KB changes every month.** |
 | 05 | `.\05-Remove-Apps.ps1` | Pick **Minimal**, **Recommended** (default) or **Aggressive**. It lists exactly what will go and asks first. Store, Security, Xbox/Game Pass and winget are always kept. |
 | 06 | `.\06-Features.ps1` | .NET 3.5 on, Work Folders and legacy Media Player off. Dev/AI PCs: uncomment Hyper-V/WSL lines. |
 | 07–09 | `.\07-Registry.ps1` | Privacy, targeted services, Start menu clean-up, Edge extras. VBS stays on. |

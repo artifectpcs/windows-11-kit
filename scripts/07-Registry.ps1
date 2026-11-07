@@ -54,7 +54,10 @@ $adv = 'HKLM\OFFUSER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
 Set-Reg $adv Start_Layout 1; Set-Reg $adv Start_TrackProgs 0; Set-Reg $adv Start_TrackDocs 0; Set-Reg $adv Start_IrisRecommendations 0
 
 # --- Services (Start = 4 means Disabled; offline images use ControlSet001) ---
-'DiagTrack','dmwappushservice','MapsBroker','PeerDistSvc','SessionEnv' | % { Set-Reg "HKLM\OFFSYS\ControlSet001\Services\$_" Start 4 }
+'DiagTrack','dmwappushservice','MapsBroker','PeerDistSvc','SessionEnv' | % {
+  reg add "HKLM\OFFSYS\ControlSet001\Services\$_" /v Start /t REG_DWORD /d 4 /f | Out-Null
+  Write-Host "  $_ : Start = 4 (Disabled)" -ForegroundColor DarkYellow
+}
 
 # --- Edge extras off ---
 $edge = 'HKLM\OFFSW\Policies\Microsoft\Edge'

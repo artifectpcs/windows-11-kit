@@ -88,4 +88,5 @@ $hits | ForEach-Object {
   Write-Host "Removing $($_.DisplayName)" -ForegroundColor DarkYellow
   Remove-AppxProvisionedPackage -Path $Mount -PackageName $_.PackageName | Out-Null
 }
+$Level | Set-Content "$Build\removal-level.txt"   # 09 uses this to match the clean-up list
 "Apps left: " + (Get-AppxProvisionedPackage -Path $Mount).Count
