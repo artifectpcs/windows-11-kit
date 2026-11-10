@@ -10,6 +10,9 @@
 #         BITS and networking are NOT touched.
 #       - Start menu (Ep 09): no placeholder pins, no Recommended section.
 #       - Edge: no sidebar, shopping pop-ups, Rewards or MSN feed.
+#       - OneDrive (Recommended/Aggressive level from step 05): stops
+#         OneDrive from installing itself at each user's first sign-in.
+#         Undo: install OneDrive later with  winget install Microsoft.OneDrive
 #  NOT CHANGED: Virtualization-based security / memory integrity stay ON.
 #  EDITION NOTE: on Windows 11 Pro, Microsoft treats AllowTelemetry=0 as
 #     the "Required" diagnostic level; the fully-off level exists only on
@@ -63,6 +66,15 @@ Set-Reg $adv Start_Layout 1; Set-Reg $adv Start_TrackProgs 0; Set-Reg $adv Start
 $edge = 'HKLM\OFFSW\Policies\Microsoft\Edge'
 Set-Reg $edge HideFirstRunExperience 1; Set-Reg $edge HubsSidebarEnabled 0; Set-Reg $edge EdgeShoppingAssistantEnabled 0
 Set-Reg $edge ShowMicrosoftRewards 0; Set-Reg $edge NewTabPageContentEnabled 0; Set-Reg $edge PersonalizationReportingEnabled 0
+
+# --- OneDrive: skip the automatic install at first sign-in ---
+$lvl = Get-Content "$Build\removal-level.txt" -ErrorAction SilentlyContinue
+if ($lvl -in 'Recommended','Aggressive') {
+  reg delete 'HKLM\OFFUSER\Software\Microsoft\Windows\CurrentVersion\Run' /v OneDriveSetup /f 2>$null | Out-Null
+  Write-Host "  OneDrive: won't auto-install (level: $lvl)" -ForegroundColor DarkYellow
+} else {
+  Write-Host "  OneDrive: kept (level: $(if ($lvl) { $lvl } else { 'not set, run step 05 first' }))" -ForegroundColor DarkYellow
+}
 
 [gc]::Collect(); Start-Sleep 2
 reg unload HKLM\OFFUSER; reg unload HKLM\OFFSYS; reg unload HKLM\OFFSW

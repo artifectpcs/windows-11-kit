@@ -5,7 +5,7 @@
 #
 #     1  MINIMAL      Ads, news and trial apps only. Everything else stays.
 #     2  RECOMMENDED  The ARTifect generic build (default). Also removes
-#                     Teams, Outlook (new), To Do, Phone Link, Dev Home,
+#                     OneDrive (via step 07), Teams, Outlook (new), To Do, Phone Link, Dev Home,
 #                     Feedback Hub, Quick Assist, Widgets and similar.
 #     3  AGGRESSIVE   Recommended, plus Copilot, Game Bar, Camera, Paint,
 #                     Sticky Notes, Media Player and Movies & TV.
@@ -70,7 +70,7 @@ if (-not $Level) {
   Write-Host ''
   Write-Host '  How much should we remove?' -ForegroundColor Cyan
   Write-Host '    1  Minimal      ads, news and trial apps only'
-  Write-Host '    2  Recommended  the ARTifect generic build  (default)'
+  Write-Host '    2  Recommended  + OneDrive, Teams, Outlook, To Do, Widgets  (default)'
   Write-Host '    3  Aggressive   also Copilot, Game Bar, Camera, Paint, media apps'
   $pick = Read-Host '  Type 1, 2 or 3 and press Enter'
   $Level = switch ($pick) { '1' {'Minimal'} '3' {'Aggressive'} default {'Recommended'} }

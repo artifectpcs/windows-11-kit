@@ -50,7 +50,7 @@ First, edit **`scripts/00-Settings.ps1`** with your name, model, support link, w
 | 02 | `.\02-Get-ISO-Export-Pro.ps1` | Download the ISO from [microsoft.com](https://www.microsoft.com/software-download/windows11) first. Shows the SHA-256 to compare, copies the files, exports **only Windows 11 Pro** |
 | 03 | `.\03-Mount-And-Inventory.ps1` | Mounts the image and saves `apps.csv`, `features.csv`, `capabilities.csv` (your "before" picture) |
 | 04 | `.\04-Add-Update.ps1 -KB <number>` | Integrates this month's update. In the [Microsoft Update Catalog](https://catalog.update.microsoft.com), search your version (e.g. `26H2`) and pick the **newest "Cumulative Update for Windows 11" for x64** that is **not** marked *Preview*. Skip the Dynamic Update, Safe OS and .NET rows. **The KB changes every month.** |
-| 05 | `.\05-Remove-Apps.ps1` | Pick **Minimal**, **Recommended** (default) or **Aggressive**. It lists exactly what will go and asks first. Store, Security, Xbox/Game Pass and winget are always kept. |
+| 05 | `.\05-Remove-Apps.ps1` | Pick **Minimal**, **Recommended** (default) or **Aggressive**. Recommended and Aggressive also stop OneDrive from installing itself (applied in step 07). It lists exactly what will go and asks first. Store, Security, Xbox/Game Pass and winget are always kept. |
 | 06 | `.\06-Features.ps1` | .NET 3.5 on, Work Folders and legacy Media Player off. Dev/AI PCs: uncomment Hyper-V/WSL lines. |
 | 07–09 | `.\07-Registry.ps1` | Privacy, targeted services, Start menu clean-up, Edge extras. VBS stays on. |
 | 10 | `.\08-Answer-File.ps1` | Writes `autounattend.xml` to your installer (see [The setup account](#the-setup-account)) |
