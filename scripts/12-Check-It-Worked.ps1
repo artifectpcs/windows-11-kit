@@ -10,7 +10,7 @@
 "Activation: " + ((Get-CimInstance SoftwareLicensingProduct -Filter "PartialProductKey IS NOT NULL AND Name LIKE 'Windows%'").LicenseStatus -eq 1)
 "Apps provisioned: " + (Get-AppxProvisionedPackage -Online).Count
 Get-AppxPackage -AllUsers | ? Name -match 'DevHome|CrossDevice|Clipchamp|Solitaire|OutlookForWindows' | Select Name
-"OneDrive installed: " + ([bool](Get-Process OneDrive -EA 0) -or (Test-Path "$env:LOCALAPPDATA\Microsoft\OneDrive\OneDrive.exe"))
+"OneDrive installed: " + ([bool](Get-Process OneDrive -EA 0) -or (Test-Path "$env:LOCALAPPDATA\Microsoft\OneDrive\OneDrive.exe") -or (Test-Path "$env:ProgramFiles\Microsoft OneDrive\OneDrive.exe") -or (Test-Path "${env:ProgramFiles(x86)}\Microsoft OneDrive\OneDrive.exe"))
 Get-Service DiagTrack,dmwappushservice,MapsBroker,PeerDistSvc,SessionEnv -EA 0 | ft Name,StartType -Auto
 Get-ScheduledTask 'Remove Returning Apps' -EA 0 | ft TaskName,State -Auto
 Get-Content C:\ProgramData\CustomWindows\app-sweep.log -EA 0
